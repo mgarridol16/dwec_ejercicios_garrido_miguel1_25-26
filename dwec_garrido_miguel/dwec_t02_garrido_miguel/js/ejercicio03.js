@@ -7,7 +7,7 @@ console.log("T02 - Ejercicio 03");
 let anio = Number(prompt("Introduce un año: (debe ser entre 0 y el año actual)"));
 if (!isNaN(anio)) {
     const yearNow = new Date().getFullYear();
-    if (anio => 0 && anio <= yearNow) {
+    if (anio >= 0 && anio <= yearNow) {  //!OJO PARA OTRA VEZ TENER CUIDADO CON LOS SIGNOS Y OPERADORES PUSE => EN VEZ DE >= Y MENOS MAL QUE DEPURAMOS Y LOGRAMOS ENCONTRAR EL FALLO
         function esBisiesto(anio) {
             if (anio % 4 !== 0) {
                 return false;
@@ -19,18 +19,18 @@ if (!isNaN(anio)) {
                 return true
             }
         }
-        } else {
+    } else {
         console.log("El anio debe estar entre 0 y el anio actual, no es valido");
         alert("El anio debe estar entre 0 y el anio actual, no es valido");
     }
-        if (esBisiesto(anio)) {
-            console.log("El anio " + anio + " Si es bisiesto");
-            alert("El anio " + anio + " Si es bisiesto");
-        } else if (!esBisiesto(anio)) {
-            console.log("El anio " + anio + " No es bisiesto")
-            alert("El anio " + anio + " No es bisiesto");
-        }
-    
+    if (esBisiesto(anio)) {
+        console.log("El anio " + anio + " Si es bisiesto");
+        alert("El anio " + anio + " Si es bisiesto");
+    } else if (!esBisiesto(anio)) {
+        console.log("El anio " + anio + " No es bisiesto")
+        alert("El anio " + anio + " No es bisiesto");
+    }
+
 } else {
     alert("No es un numero");
     console.log("No es un numero")
