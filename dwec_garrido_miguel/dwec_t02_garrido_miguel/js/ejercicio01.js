@@ -8,18 +8,21 @@ let num2= parseFloat(prompt("Dame otro numero:"));
 let num3= parseFloat(prompt("Dame otro tercer numero:"));
 console.log(num1,num2,num3);
 
-let media= (num1 + num2 + num3)/3;
+let media= (num1 + num2 + num3) / 3;
 
 if(media<5){
-    console.log("La media es: "+ media+ " SUSPENSO");
-    alert("La media es: "+ media+ " SUSPENSO");
-}else if(media>4 && media<7){
-    console.log("La media es: "+ media+ " APROBADO");
-    alert("La media es: "+ media+ " APROBADO");
-}else if(media>6 && media<8.5){
-    console.log("La media es: "+ media+ " NOTABLE"); 
-    alert("La media es: "+ media+ " NOTABLE");
-}else if(media>8&& media<=10){
-    console.log("La media es: "+ media+ " SOBRESALIENTE");
-    alert("La media es: "+ media+ " SOBRESALIENTE");
+    console.log("La media es: "+ media + " SUSPENSO");
+    alert("La media es: "+ media + " SUSPENSO");
+}else if(media>=5 && media<7){
+    console.log("La media es: "+ media + " APROBADO");
+    alert("La media es: "+ media + " APROBADO");
+}else if(media>=7 && media<8.5){
+    console.log("La media es: "+ media + " NOTABLE"); 
+    alert("La media es: "+ media + " NOTABLE");
+}else if(media>=8.5 && media<=10){
+    console.log("La media es: "+ media + " SOBRESALIENTE");
+    alert("La media es: "+ media + " SOBRESALIENTE");
+}else{
+    console.log("La media es: "+ media + " no se corresponde a lo esperado");
+    alert("La media es: "+ media + " no se corresponde a lo esperado");
 }
