@@ -35,3 +35,4 @@ if (!isNaN(anio)) {
     alert("No es un numero");
     console.log("No es un numero")
 }
+//FALTA CONTROLAR CON UN DO-WHILE QUE PIDA OTRO NUMERO HASYA QUE QUIERA SALIR OSEA PREGUNTAR SI QUIERE CONTROLAR OTRO O NO
