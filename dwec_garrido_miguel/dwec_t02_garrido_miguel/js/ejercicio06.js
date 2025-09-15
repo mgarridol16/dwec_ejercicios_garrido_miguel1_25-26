@@ -21,3 +21,6 @@ for (let i = 0; i < num2; i++) {
     console.log(mult); 
 };
 alert("La multiplicación es: " + mult)
+
+//falta hacer lo de negativo fatla la variable negativo si los dos numeros son menos de 0 multiplicamos *=-1 y si solo es num1 igual y funcion isNegativo= true y si es negativo producto*=-1
+// y luego lo demas igual pero despues y al final ponerle el signo 
