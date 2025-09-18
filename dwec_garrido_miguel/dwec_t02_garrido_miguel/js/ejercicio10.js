@@ -31,3 +31,5 @@ function miFactorial(num) {
 
 console.log(`El factorial de ${num} es: ${resultado}`);
 alert(`El factorial de ${num} es: ${resultado}`);
+
+/**HACER UN BUCLE POR SI ES ISNAN Y CONTROLAR PARA QUE VUELVA A PEDIR NUMERO CON DO WHILE */

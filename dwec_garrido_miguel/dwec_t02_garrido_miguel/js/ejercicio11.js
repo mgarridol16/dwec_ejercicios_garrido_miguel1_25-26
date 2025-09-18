@@ -17,20 +17,24 @@ if (isNaN(num)) {
     alert("No es un numero");
 } else {
     let resultado = factorialImpar(num);
-}
-
-
-function factorialImpar(num) {
-    if (num % 2 === 0) {  //SI ES PAR LE QUITO UNO PARA HACERLO IMPAR
-        num = num - 1;
+    function factorialImpar(num) {
+        if (num % 2 === 0) {  //SI ES PAR LE QUITO UNO PARA HACERLO IMPAR
+            num = num - 1;
+        }
+        if (num <= 1) {  //SI ES MENOR QUE UNO DEVUELVO UN 1 Y POR LO TANTO PARAMOS EL PROGRAMA
+            return 1; //PARA QUE NO SIGA LLAMANDO 
+        }
+        return num * factorialImpar(num - 2); //HACEMOS EL BUCLE DE EL NUMERO MULTIPLICARLO POR LA LLAMADA A LA MISMA FUNCION PERO CON DOS NUMEROS MENOS PARA QUE SEA IMPAR
     }
-    if (num <= 1) {  //SI ES MENOR QUE UNO DEVUELVO UN 1 Y POR LO TANTO PARAMOS EL PROGRAMA
-        return 1; //PARA QUE NO SIGA LLAMANDO 
-    }
-    return num * factorialImpar(num - 2); //HACEMOS EL BUCLE DE EL NUMERO MULTIPLICARLO POR LA LLAMADA A LA MISMA FUNCION PERO CON DOS NUMEROS MENOS PARA QUE SEA IMPAR
-}
 
-console.log(resultado);
-alert(resultado);
+    alert(resultado);
+    console.log(resultado);
+
+    //BAJA MULTIPLICANDO TODAS LAS CAJAS DE RETURN NUM * POR LA FUNCION Y LUEGO CUANDO TERMINA ESO SUBE MULTIPLICANDO TODOS LOS RESULTADOS Y AHI ES CUANDO CORTA
+
+    //SERIA MEJOR CONTROLARLO CON UN DO WHILE PARA QUE PIDA OTRO NUMERO SI ISNAN Y ESO
+
+    //SI ES PAR SERIA NUM -1 Y SI ES IMPAR SERIA NUM-2
+}
 
 
