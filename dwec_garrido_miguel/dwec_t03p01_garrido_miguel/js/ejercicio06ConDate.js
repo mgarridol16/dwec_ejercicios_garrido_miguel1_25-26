@@ -25,7 +25,7 @@ let fechaTrasSeparador = fechaSucia.split(separador);
 // fechaTrasSeparador = [DD, MM, YYYY]
 
 // Convertir cada parte a número para poder usarla en Date
-let dia = Number(fechaTrasSeparador[0]);
+let dia = Number(fechaTrasSeparador[0]); //SIEMPRE SERA A BASE 10 SI NO SE INDICA LO HICE CON NUMBER POR QUE TAMBIEN VALE
 let mes = Number(fechaTrasSeparador[1]);
 let anio = Number(fechaTrasSeparador[2]);
 
@@ -56,7 +56,6 @@ if (
     console.log("Fecha inválida");
 }
 
-// Imprimir la fecha en formato DD/MM/YYYY
 console.log(dia + "/" + mes + "/" + anio);
 
 /*
