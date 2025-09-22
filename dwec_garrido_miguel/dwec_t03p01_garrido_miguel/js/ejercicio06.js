@@ -55,3 +55,18 @@ Comprueba si el día es válido:
 2. Febrero: máximo 28 o 29 según si es bisiesto.
 3. Abril, junio, septiembre y noviembre: máximo 30 días.
 */
+
+/*
+LA FORMA MAS FACIL QUE HE INVESTIGADO QUE DICE EL PROFESOR ES:
+let fecha = new Date(anio, mes - 1, dia); // mes-1 porque JavaScript empieza en 0
+if (
+    fecha.getFullYear() === anio &&
+    fecha.getMonth() === mes - 1 &&
+    fecha.getDate() === dia
+) {
+    console.log("La fecha es válida");
+} else {
+    console.log("Fecha inválida");
+}
+
+*/

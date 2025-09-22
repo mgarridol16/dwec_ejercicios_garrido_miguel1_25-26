@@ -11,6 +11,8 @@ let juntoPalabra = quitoEspacios.split(",");
 let conviertoAnum = juntoPalabra.map(Number); // [1, 2, 3, 4]; Se quedaria asi
 
 console.log(conviertoAnum);
+
+//HACERLO CON ReplaceALL
 /*
 .split(" ") → corta la cadena donde hay espacios.
 
