@@ -16,7 +16,7 @@ toPrecision = cuántas cifras en total quiere
 
 let num1 = 34.426;
 let num1Fixed = num1.toFixed(2);
-let num1Press = num1.toPrecision(2);
+let num1Press = num1.toPrecision(3);
 
 console.log(num1Fixed);
 console.log(num1Press);
