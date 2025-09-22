@@ -16,3 +16,10 @@ let menor = Math.min(...numeros); //El operador ... toma un array y “lo desemp
 let mayor = Math.max(...numeros);
 console.log(menor);
 console.log(mayor);
+
+/*
+Math.min(...numeros) funciona porque el operador ... (spread) desempaqueta el array y lo convierte en una lista de valores sueltos. 
+Así, si numeros = [3,1,4], entonces Math.min(...numeros) en realidad se convierte en Math.min(3,1,4), que devuelve 1.
+Si pusieras directamente Math.min(numeros), estarías pasando la caja entera (el array) en vez de los elementos, y daría NaN. 
+Por eso usamos ...: para que Math.min y Math.max puedan comparar cada número individualmente.
+*/
