@@ -1,13 +1,11 @@
-console.log("T03p01 - Ejercicio 12");
+console.log("T03p01 - Ejercicio 13");
 
 /*
-Elabora un script que simule el sorteo del cupón diario de la once sin número de serie. 
-El número premiado se obtiene de cinco bombos: unidades, decenas, centenas, unidades de millar y decenas de millar. 
-Cada bombo dará un número entero entre 0 y 9. Haz uso del método "random()" del objeto Math. 
-Define la función: "generar_numeros_entre_0_9()" que no recibe nada y devuelve un número entre 0 y 9.
+¿Cómo se resolvería el ejercicio anterior definiendo un nuevo método en el objeto Math que se llame "random2(lim_inf, lim_sup)"?
 */
 let unidades, decenas, centenas, unidadesMillar, decenasMillar;
-
+let lim_inf = 0;
+let lim_sup = 9;
 for (let i = 0; i < 5; i++){
     if(i == 0){
         unidades = generar_numeros_entre_0_9();
@@ -27,8 +25,9 @@ for (let i = 0; i < 5; i++){
 }
 let cupon = unidades.toString() + decenas.toString() + centenas.toString() + unidadesMillar.toString() + decenasMillar.toString();
 
-function generar_numeros_entre_0_9(){
-    let numeroRandom = Number.parseInt((Math.random() * (9 - 0 + 1)+ 0));
+
+function random2(lim_inf, lim_sup){
+    let numeroRandom = Number.parseInt((Math.random() * (lim_sup - lim_inf + 1)+ lim_inf));
     return numeroRandom;
 }
 
