@@ -3,25 +3,24 @@ console.log("T03p01 - Ejercicio 14");
 /*
 Crea un script que pida al usuario la fecha de su nacimiento (para saber su cumpleaños) y le indique su edad actual.
 */
-let fechaNacimiento = prompt("Dime tu fecha de nacimiento (DD-MM-YYYY):");
 
+let fechaNacimiento = prompt("Dame la fecha de nacimiento asi : DD-MM-AAAA: ");
 
-let partes = fechaNacimiento.split("-");
+let partes = fechaNacimiento.split('-');
 let dia = parseInt(partes[0]);
-let mes = parseInt(partes[1]);
+let mes = parseInt(partes[1])-1;
 let anio = parseInt(partes[2]);
 
+let fechaNaciFormat = new Date(anio,mes,dia);
 
-let hoy = new Date();
-let anioActual = hoy.getFullYear();
-let mesActual = hoy.getMonth() + 1; // los meses empiezan el 0 en js
-let diaActual = hoy.getDate();
+let fechaActual = new Date();
+let diaHoy = fechaActual.getDate();
+let mesHoy = fechaActual.getMonth();
+let anioHoy = fechaActual.getFullYear();
 
+let edad = fechaActual.getFullYear() - fechaNaciFormat.getFullYear();
 
-
-let edad = anioActual - anio; //edad
-if (mesActual < mes || (mesActual === mes && diaActual < dia)) {
-    edad--; //le resto uno si falta un mes o es el mismo mes pero el dia no es el mismo
+if(mesHoy < mes || (mes === mesHoy && diaHoy < dia)){
+    edad--;
 }
-
-console.log("Tienes " + edad + " años.");
+console.log("Tu edad actual es: " + edad);
