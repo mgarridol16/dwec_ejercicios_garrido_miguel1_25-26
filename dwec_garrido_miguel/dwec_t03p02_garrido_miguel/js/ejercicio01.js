@@ -1,4 +1,4 @@
-console.log("T03p01 - Ejercicio 01");
+console.log("T03p02 - Ejercicio 01");
 /*
 Crea una función llamada oraculo que reciba un número variable de argumentos (edad, nivel de poder, número de batallas, etc.). 
 Pueden pasar el número que quieran y si no reciben ninguno el valor por defecto recibido será 0.
@@ -27,10 +27,10 @@ while (opcion != "no") {
 
 
 
-function oraculo(edad, poder, numeroBatallas) {
+function oraculo(edad, poder, numeroBatallas, ...resto) {
     let argumentos = esNumero(edad, poder, numeroBatallas);
     for (let i = 0; i < argumentos.length; i++) {
-        if (argumentos[i] === undefined) {
+        if (argumentos[i] === undefined) { //CAMBIAR LO DE SI ES UNDEFINED ESE NUMERO YA NO SE TIENE ENCUENTA EN EL CALCULO
             argumentos[i] = 0;
         }
     }
@@ -41,7 +41,7 @@ function oraculo(edad, poder, numeroBatallas) {
     const calcularMedia = function (edad, poder, numeroBatallas) {
         let contador = arguments.length;
         let suma = 0;
-        for (let i = 0; i < arguments.length; i++) {
+        for (let i = 0; i < contador; i++) {
             suma += arguments[i];
         }
         return suma / contador;
