@@ -3,7 +3,7 @@ console.log("T03p03 - Ejercicio 01");
 
 */
 
-const arrayDefinido = [1, 2, 3, 4, 5, 6, 7, 8];
+const arrayDefinido = [1, 2, 3];
 let inicio;
 let final;
 let opcion;
@@ -17,82 +17,74 @@ do {
         '\n0. No hacer nada' +
         '\n¿Que quieres hacer?: '));
 
-    switch (opcion) {
 
-        case 1:
-            borrarUltimoElemento(arrayDefinido);
-            break;
-        case 2:
-            borrarPrimerElemento(arrayDefinido);
-            break;
-        case 3:
-            borrarAmbos(arrayDefinido);
-            break;
-        case 4:
-            deshacer(arrayDefinido);
-            break;
-        case 0:
-            console.log("\nEl array es " + arrayDefinido.toString());
-            console.log("ini: " + inicio + " final: " + final);
-            console.log("\nAdios gracias por usarnos");
-            break;
-        default:
-            console.log("Hay un error lo siento");
+    if (arrayDefinido.length > 0) {
+        switch (opcion) {
+            case 1:
+                if (arrayDefinido.length == 0) {
+                    console.log("El array está vacío, no podemos realizar la acción");
+                } else {
+                    final = arrayDefinido[arrayDefinido.length - 1];
+                    inicio = arrayDefinido[0];
+                    arrayDefinido.pop();
+                }
+                opcionElegida = 1;
+                break;
+            case 2:
+                if (arrayDefinido.length == 0) {
+                    console.log("El array esta vacio no podemos realizar la acción");
+                } else {
+                    final = arrayDefinido[arrayDefinido.length - 1];
+                    inicio = arrayDefinido[0];
+                    arrayDefinido.shift();
+                }
+                opcionElegida = 2;
+                break;
+            case 3:
+                if (arrayDefinido.length == 0) {
+                    console.log("El array esta vacio no podemos realizar la acción");
+                } else {
+                    inicio = arrayDefinido[0];
+                    final = arrayDefinido[arrayDefinido.length - 1];
+                    arrayDefinido.shift();
+                    arrayDefinido.pop();
+                }
+
+                opcionElegida = 3;
+                break;
+            case 4:
+                if (opcionElegida == 1) {
+                    arrayDefinido.push(final);
+                } else if (opcionElegida == 2) {
+                    arrayDefinido.unshift(inicio);
+                } else if (opcionElegida == 3) {
+                    arrayDefinido.unshift(inicio);
+                    arrayDefinido.push(final);
+                } else {
+                    console.error("Error al deshacer array no hay nada para deshacer");
+                }
+                inicio = 0;
+                final = 0;
+                break;
+            case 0:
+                console.log("\nEl array es " + arrayDefinido.toString());
+                console.log("\nAdios gracias por usarnos");
+                break;
+            default:
+                console.log("Hay un error lo siento");
+        }
+    } else {
+        console.log("El array esta vacio no se puede continuar");
+        opcion = 0;
+    }
+    if(arrayDefinido.length == 0){
+        console.log("El array esta vacio no podemos continuar");
     }
 
 } while (opcion != 0 && arrayDefinido.length > 0);
 
-function borrarUltimoElemento(arrayDefinido) {
-    if (arrayDefinido.length == 0) {
-        console.error("El array está vacío, no podemos realizar la acción");
-    } else {
-        final = arrayDefinido[arrayDefinido.length - 1];
-        inicio = arrayDefinido[0];
-        arrayDefinido.pop();
-    }
 
 
-    opcionElegida = 1;
-
-}
-
-function borrarPrimerElemento(arrayDefinido) {
-    if (arrayDefinido.length == 0) {
-        console.error("El array esta vacio no podemos realizar la acción");
-    } else {
-        final = arrayDefinido[arrayDefinido.length - 1];
-        inicio = arrayDefinido[0];
-        arrayDefinido.shift();
-    }
-    opcionElegida = 2;
-
-}
-function borrarAmbos(arrayDefinido) {
-    inicio = arrayDefinido[0];
-    final = arrayDefinido[arrayDefinido.length - 1];
-    arrayDefinido.shift();
-    arrayDefinido.pop();
-    opcionElegida = 3;
-
-}
-function deshacer(arrayDefinido) {
-    if (opcionElegida == 1 && final != undefined) {
-        arrayDefinido.push(final);
-    } else if (opcionElegida == 2 && inicio != undefined) {
-        arrayDefinido.unshift(inicio);
-    } else if (opcionElegida == 3) {
-        if (inicio != undefined) {
-            arrayDefinido.unshift(inicio);
-        }
-        if (final != undefined) {
-            arrayDefinido.push(final);
-        }
-
-    } else {
-        console.error("Error al deshacer erray");
-    }
-
-}
 
 
 
