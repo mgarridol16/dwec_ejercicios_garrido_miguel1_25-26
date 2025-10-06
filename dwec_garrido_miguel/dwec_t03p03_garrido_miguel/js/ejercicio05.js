@@ -3,7 +3,7 @@ console.log("T03p03 - Ejercicio 05");
 
 */
 
-const array = [1, 2, 3, 4, 5, 6, 7, 8];
+const array = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 let orden = prompt("¿Como quieres ordenar el array ? [asc | desc]");
 
@@ -24,20 +24,26 @@ if (isNaN(orden) && (orden == "asc" || orden == "desc")) {
 }
 
 function ordenarAsc(array) {
-    let arrayOrdenado = array.sort();
+    let arrayOrdenado = array.sort(function(a, b){
+        return a-b
+    });
 
     console.log("Array ordenado de forma ascendente");
-    for (let i of arrayOrdenado) {
-        console.log(i);
-    }
+    mostrarArray(arrayOrdenado)
 }
 
 function ordenarDesc(array) {
-    let arrayOrdenado = array.sort();
-    let darLavuelta = arrayOrdenado.reverse();
+    let arrayOrdenado = array.sort(function(a, b){
+        return b -a
+    });
 
     console.log("Array ordenado de forma descendente");
-    for (let i of darLavuelta) {
+    mostrarArray(arrayOrdenado);
+}
+
+function mostrarArray(array){
+    console.log("Mostrando Array: ");
+    for(let i of  array){
         console.log(i);
     }
 }
