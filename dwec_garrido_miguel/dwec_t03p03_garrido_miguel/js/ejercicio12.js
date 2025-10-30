@@ -9,58 +9,55 @@ No se permite usar {} ni crear clases o constructores.
 */
 
 const estadosPosibles = ["todo", "done"];
-const categorias = [
+/*const categorias = [
     ["compra"],
     ["regalos", ["libro", "todo"], ["disco", "done"], ["zapatillas", "done"]],
     ["maleta", ["bolsa de aseo", "todo"]]
 ];
-
+*/
+const categorias = [];
 
 const pilaDeshacer = [];
 
 
 if (categorias.length === 0) {
     let nombreCategoria = prompt("Dime el nombre de una categoria");
-    categorias.push(nombreCategoria);
+    categorias.push([nombreCategoria]);
 
     let opcionSioNo = prompt("¿Deseas ingresar la primera tarea en la categoria creada? [si(1) | no(0)]");
     let opcionSioNo2;
 
     if (opcionSioNo == 1) {
-        let opc;
-        do {
-            opc = parseInt(prompt("¿Deseas añadir una nueva categoria? [si(1) | no(0)]"));
-            let nuevaTarea = prompt("¿Como se llama la tarea que quires crear?");
-            const categoriaSeleccionada = categorias[categorias.length - 1];
-            categoriaSeleccionada.push([nuevaTarea, "todo"]);
+        let nuevaTarea = prompt("¿Como se llama la tarea que quires crear?");
+        const categoriaSeleccionada = categorias[categorias.length - 1];
+        categoriaSeleccionada.push([nuevaTarea, "todo"]);
 
-            if (opc == 0) {
-                console.log("Saliendo de introducir tareas");
-            }
-        } while (opc !== 0);
+
+
+    } else if (opcionSioNo == 0) {
+        console.log("Vale no introduciremos una primera tarea");
     } else {
-        opcionSioNo2 = prompt("¿Desea crear una nueva categoria? [si(1) | no(0)]");
-
-        if (opcionSioNo2 == 1) {
-            let opc;
-            do {
-                opc = parseInt(prompt("¿Quieres añadir una nueva categoria? [si(1) | no(0)]"));
-                let nuevaCategoria = prompt("Dime el nombre de la nueva categoria a crear");
-                categorias.push(nuevaCategoria);
-
-                if (opc == 0) {
-                    console.log("Saliendo de crear categorias");
-                }
-            } while (opc !== 0);
-        }
+        console.log("Error al introducir opcion");
     }
+
+    do{
+    opcionSioNo2 = prompt("¿Desea crear una nueva categoria? [si(1) | no(0)]");
+    if (opcionSioNo2 == 1) {
+            let nuevaCategoria = prompt("Dime el nombre de la nueva categoria a crear");
+            categorias.push([nuevaCategoria]);
+
+    }else{
+        menu1(categorias);
+        break;
+    }
+}while(opcionSioNo2 !== 0);
 } else {
     // EMPEZAMOS MENU 1
     menu1(categorias);
 }
 
 /* ========================
-   MENU 1
+   MENU 1
 ======================== */
 function menu1(categorias) {
     let opcMenu1;
@@ -96,7 +93,7 @@ Elige una opción:`));
 }
 
 /* ========================
-   MENU 2
+   MENU 2
 ======================== */
 function menu2(categorias) {
     let texto = "Menú 2 \n=======\n";
@@ -131,7 +128,7 @@ function menu2(categorias) {
 }
 
 /* ========================
-   MENU 3
+   MENU 3
 ======================== */
 function menu3(categoriaSeleccionada, categorias) {
     let texto = "Menú 3. Categoía " + categoriaSeleccionada[0] + "\n===========\n";
@@ -181,12 +178,12 @@ function menu3(categoriaSeleccionada, categorias) {
         opcionesSeleccionadas.forEach(optionStr => {
             const optionNum = Number(optionStr);
             if (optionNum > 0 && optionNum <= numTareas) {
-                let tareaSeleccionada = tareasCategoria[optionNum - 1]; 
+                let tareaSeleccionada = tareasCategoria[optionNum - 1];
 
-                
+
                 if (tareaSeleccionada[1] === "todo") {
                     pasoActualUndo.push([tareaSeleccionada, "todo"]);
-                    tareaSeleccionada[1] = "done"; 
+                    tareaSeleccionada[1] = "done";
                     tareasCambiadas++;
                     console.log(`Estado de la tarea '${tareaSeleccionada[0]}' cambiado a: done`);
                 } else {
@@ -199,9 +196,9 @@ function menu3(categoriaSeleccionada, categorias) {
         if (pasoActualUndo.length > 0) {
             if (pilaDeshacer.length >= 5) {
                 console.log("Historial de deshacer lleno. Eliminando el paso más antiguo.");
-                pilaDeshacer.shift(); 
+                pilaDeshacer.shift();
             }
-            pilaDeshacer.push(pasoActualUndo); 
+            pilaDeshacer.push(pasoActualUndo);
             console.log(`Estado actualizado para ${pasoActualUndo.length} tarea(s). Paso guardado en historial.`);
         } else {
             console.log("No se realizaron cambios de 'todo' a 'done'.");
@@ -218,14 +215,14 @@ function menu3(categoriaSeleccionada, categorias) {
         } else if (singleOption === opcBorrar) {
             console.log("Opción: Borrar tarea");
             borrarTarea(categoriaSeleccionada, tareasCategoria, categorias);
-        } else if (singleOption === opcDeshacer) { 
+        } else if (singleOption === opcDeshacer) {
             console.log("Opción: Deshacer último paso.");
-            if(pilaDeshacer.length > 0) {
+            if (pilaDeshacer.length > 0) {
                 deshacerUltimoPaso();
             } else {
                 console.log("No hay pasos para deshacer.");
             }
-            menu3(categoriaSeleccionada, categorias); 
+            menu3(categoriaSeleccionada, categorias);
         } else if (singleOption === opcAtras) {
             console.log("Volviendo a menu2");
             menu2(categorias);
@@ -246,16 +243,16 @@ function deshacerUltimoPaso() {
         return;
     }
 
-    const ultimoPaso =pilaDeshacer.pop();
+    const ultimoPaso = pilaDeshacer.pop();
 
     let tareasRevertidas = 0;
 
     for (const tareaInfo of ultimoPaso) {
-        const tareaArray = tareaInfo[0]; 
+        const tareaArray = tareaInfo[0];
         const estadoAnterior = tareaInfo[1];
 
-        tareaArray[1] = estadoAnterior; 
-        
+        tareaArray[1] = estadoAnterior;
+
         console.log(`DESHECHO: Tarea '${tareaArray[0]}' devuelta a '${estadoAnterior}'`);
         tareasRevertidas++;
     }
@@ -280,7 +277,7 @@ function añadirNuevaCategoria(categorias) {
         opc = parseInt(prompt("Quieres añadir una nueva Categoria? [si(1) | no(0)]"));
         if (opc === 1) {
             let nombreCategoria = prompt("Introduce el nombre de la nueva categoria");
-            categorias.push([nombreCategoria]); 
+            categorias.push([nombreCategoria]);
         } else {
             console.log("Saliendo de añadir Nueva categoria del menu 1");
         }
@@ -350,7 +347,7 @@ function anadirNuevaTarea(categoriaSeleccionada, categorias) {
         let nameTarea = prompt("Dime el nombre de la tarea que quieres añadir (ej: comprar pan):");
         if (nameTarea !== null && nameTarea.trim() !== "") {
             tareaAñadir = [nameTarea.trim(), "todo"];
-            categoriaSeleccionada.push(tareaAñadir); 
+            categoriaSeleccionada.push(tareaAñadir);
             console.log(`¡Tarea '${nameTarea.trim()}' añadida correctamente!`);
         } else {
             console.log("Error al añadir tarea: el nombre no puede estar vacío o fue cancelado.");
@@ -391,7 +388,7 @@ function borrarTarea(categoriaSeleccionada, tareasCategoria, categorias) {
         let quiereBorrar = Number(prompt("¿Estas seguro que quieres borrar la tarea " + nombreTarea + " [SI(1) | NO(0)] :"));
 
         if (quiereBorrar == 1) {
-            categoriaSeleccionada.splice(numeroTarea + 1, 1); 
+            categoriaSeleccionada.splice(numeroTarea + 1, 1);
             console.log(nombreTarea + " ha sido eliminada con exito");
         } else {
             console.log("Entendido no borraremos la tarea");
