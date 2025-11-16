@@ -54,7 +54,8 @@ function Alumno(nombre, fecha_Nacimiento, dni, sexo, nota1, nota2, nota3) {
         this.nota3 = nota3;
         this.calcularNota();
         console.log("Las notas han sido cambiadas ha: " + nota1 + " " + nota2 + " " + nota3);
-    }
+    };
+
     Alumno.prototype.comparar = function (otraPersona) {
         if (this._notaFinal > otraPersona._notaFinal) {
             return 1;
@@ -63,7 +64,7 @@ function Alumno(nombre, fecha_Nacimiento, dni, sexo, nota1, nota2, nota3) {
         } else {
             return 0;
         }
-    }
+    };
 
     Alumno.prototype.estaAprobado = function () {
         if (this._notaFinal >= 5) {
@@ -71,7 +72,13 @@ function Alumno(nombre, fecha_Nacimiento, dni, sexo, nota1, nota2, nota3) {
         } else {
             return false;
         }
-    }
+    };
+
+    Alumno.prototype.grupo = " ";
+
+
+
+
 
 }
 //GETTERS Y SETTERS

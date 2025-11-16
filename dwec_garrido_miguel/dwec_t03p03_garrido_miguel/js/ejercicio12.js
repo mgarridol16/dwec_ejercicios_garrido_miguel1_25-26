@@ -243,6 +243,7 @@ function deshacerUltimoPaso() {
         return;
     }
 
+    
     const ultimoPaso = pilaDeshacer.pop();
 
     let tareasRevertidas = 0;

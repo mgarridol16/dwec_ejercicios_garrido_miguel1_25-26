@@ -5,7 +5,7 @@ console.log("T04p01 - Ejercicio 02");
 */
 function Aula(numMaximoAlumnos, idAula, descripcionAula, curso) {
     this._alumnos = [];
-    this._numAlumnosAula = 31;
+    this._numAlumnosAula = 0;
     this.numMaximoAlumnos = numMaximoAlumnos;
     this._idAula = idAula;
     this.descripcionAula = descripcionAula;
@@ -80,75 +80,89 @@ function Aula(numMaximoAlumnos, idAula, descripcionAula, curso) {
         }
     };
     this.insertarAlumnos = function (alumnosAInsertar) {
-        this.alumnos.push(alumnosAInsertar);
+        this._alumnos = this._alumnos.concat(alumnosAInsertar);
+        this._numAlumnosAula += alumnosAInsertar.length;
         console.log("Alumnos añadidos al aula correctamente");
     };
     this.mostrarDatos = function () {
-        let info;
+        let info = ""; 
         for (let alum of this.alumnos) {
-            info = `--- Ficha del Alumno ---\n` +
+            info += `--- Ficha del Alumno ---\n` + 
                 `Nombre: ${alum.nombre}\n` +
                 `DNI: ${alum.dni}\n` +
                 `Fecha Nacimiento: ${alum.fecha_Nacimiento}\n` +
                 `Edad: ${alum.edad}\n` +
                 `Sexo: ${alum.sexo}\n` +
                 `Notas: ${alum.nota1}, ${alum.nota2}, ${alum.nota3}\n` +
-                `Nota Final: ${alum.notaFinal.toFixed(2)}`;
-            return info;
+                `Nota Final: ${alum.notaFinal.toFixed(2)}\n\n`; 
         }
+        return info;
     };
     this.mediasNotas = function () {
         let contadorNotas = 0;
         let sumaNotas = 0;
-        let mediaNotasAulas = sumaNotas / contadorNotas;
+
 
         for (let alum of this.alumnos) {
             contadorNotas++;
             sumaNotas += alum.notaFinal;
         }
+        let mediaNotasAulas = sumaNotas / contadorNotas;
         return mediaNotasAulas;
     };
-    this.mejorNota() = function () {
+    this.mejorNota = function () {
         let notaMaxima = 0;
         let mejoresAlumnos = [];
         for (let alum of this.alumnos) {
             if (alum.notaFinal > notaMaxima) {
                 notaMaxima = alum.notaFinal;
                 mejoresAlumnos = [alum];
-            } else if (alumnos[alum].notaFinal == notaMaxima) {
+            } else if (alum.notaFinal == notaMaxima) {
                 mejoresAlumnos.push(alum);
             }
         }
         return mejoresAlumnos;
     };
-    this.porcentajeSuspensos() = function () {
+    this.porcentajeSuspensos = function () {
         let numeroAlumnos = 0;
         let alumnosSuspensos = 0;
-        let porcentajeSuspensos = (alumnosSuspensos * 100) / numeroAlumnos;
-        for (let alum of alumnos) {
+
+        for (let alum of this.alumnos) {
             numeroAlumnos++;
             if (alum.notaFinal < 5) {
                 alumnosSuspensos++;
             }
         }
+        let porcentajeSuspensos = (alumnosSuspensos * 100) / numeroAlumnos;
         return porcentajeSuspensos;
     };
-    this.mostrarSuspensosAprobados() = function () {
-        let numeroAlumnos = 0;
-        let alumnosSuspensos = 0;
-        let porcentajeSuspensos = this.porcentajeSuspensos;
+    this.mostrarSuspensosAprobados = function () {
+        let porcentajeSuspensos = this.porcentajeSuspensos();
         let porcentajeAprobados = 100 - porcentajeSuspensos;
-        let CadenaResult = "Porcentaje de Alumnos Aprobados: " + porcentajeAprobados + "% | Porcentaje de Alumnos suspensos: " + porcentajeSuspensos + "%";
-        for (let alum of alumnos) {
-            numeroAlumnos++;
-            if (alum.notaFinal < 5) {
-                alumnosSuspensos++;
+        let cadenaResult = "Porcentaje de Alumnos Aprobados: " + porcentajeAprobados.toFixed(2) +
+            "% | Porcentaje de Alumnos suspensos: " + porcentajeSuspensos.toFixed(2) + "%";
+        return cadenaResult;
+    };
+
+    Aula.prototype.gruposDisponibles = new Set(["Grupo1", "Grupo2"]);
+
+    Aula.prototype.asignarGrupoAAlumno = function (AlumnoAsignar, grupo){
+        for (let alum of this.alumnos){
+            if(alum.dni == AlumnoAsignar.dni){
+                if(this.gruposDisponibles.has(grupo)){
+                    alum.grupo = grupo;
+                }
+                return;
             }
         }
-        return CadenaResult;
+    }
+
+    Aula.prototype.crearNuevoGrupo = function (nombreGrupo){
+            this.gruposDisponibles.add(nombreGrupo);
     }
 
 };
+
 Object.defineProperty(Aula.prototype, "alumnos", {
     get: function () {
         return this._alumnos;
@@ -181,14 +195,7 @@ Object.defineProperty(Aula.prototype, "idAula", {
         this._idAula = idAula;
     }
 });
-Object.defineProperty(Aula.prototype, "idAula", {
-    get: function () {
-        return this._idAula;
-    },
-    set: function (idAula) {
-        this._idAula = idAula;
-    }
-});
+
 Object.defineProperty(Aula.prototype, "descripcionAula", {
     get: function () {
         return this._descripcionAula;
